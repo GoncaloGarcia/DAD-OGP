@@ -9,24 +9,39 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PacServer", "PacServer\PacS
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MockClient", "MockClient\MockClient.csproj", "{6EA55B1C-D6A8-481F-8FCA-7E2623D5F5E2}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CommonLibs", "CommonLibs\CommonLibs.csproj", "{194D129F-DA52-411A-9884-233A0394DE40}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Custom|Any CPU = Custom|Any CPU
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{ECE5A838-E181-493A-B9A2-6ADD01DE37F6}.Custom|Any CPU.ActiveCfg = Custom|Any CPU
+		{ECE5A838-E181-493A-B9A2-6ADD01DE37F6}.Custom|Any CPU.Build.0 = Custom|Any CPU
 		{ECE5A838-E181-493A-B9A2-6ADD01DE37F6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{ECE5A838-E181-493A-B9A2-6ADD01DE37F6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{ECE5A838-E181-493A-B9A2-6ADD01DE37F6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{ECE5A838-E181-493A-B9A2-6ADD01DE37F6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{016D19B4-29CB-4EB4-9E10-38FEE9CD9435}.Custom|Any CPU.ActiveCfg = Custom|Any CPU
+		{016D19B4-29CB-4EB4-9E10-38FEE9CD9435}.Custom|Any CPU.Build.0 = Custom|Any CPU
 		{016D19B4-29CB-4EB4-9E10-38FEE9CD9435}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{016D19B4-29CB-4EB4-9E10-38FEE9CD9435}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{016D19B4-29CB-4EB4-9E10-38FEE9CD9435}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{016D19B4-29CB-4EB4-9E10-38FEE9CD9435}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6EA55B1C-D6A8-481F-8FCA-7E2623D5F5E2}.Custom|Any CPU.ActiveCfg = Custom|Any CPU
+		{6EA55B1C-D6A8-481F-8FCA-7E2623D5F5E2}.Custom|Any CPU.Build.0 = Custom|Any CPU
 		{6EA55B1C-D6A8-481F-8FCA-7E2623D5F5E2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{6EA55B1C-D6A8-481F-8FCA-7E2623D5F5E2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6EA55B1C-D6A8-481F-8FCA-7E2623D5F5E2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6EA55B1C-D6A8-481F-8FCA-7E2623D5F5E2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{194D129F-DA52-411A-9884-233A0394DE40}.Custom|Any CPU.ActiveCfg = Custom|Any CPU
+		{194D129F-DA52-411A-9884-233A0394DE40}.Custom|Any CPU.Build.0 = Custom|Any CPU
+		{194D129F-DA52-411A-9884-233A0394DE40}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{194D129F-DA52-411A-9884-233A0394DE40}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{194D129F-DA52-411A-9884-233A0394DE40}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{194D129F-DA52-411A-9884-233A0394DE40}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
