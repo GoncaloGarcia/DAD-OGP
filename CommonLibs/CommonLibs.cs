@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Serialization;
 
-namespace CommonLibs
+namespace pacman
 {
     /// <summary>
     /// Possible moves performed by the client
@@ -16,7 +16,8 @@ namespace CommonLibs
         Left,
         Right,
         Up,
-        Down
+        Down,
+        Die
     }
 
     /// <summary>
@@ -47,7 +48,7 @@ namespace CommonLibs
             roundTimestamp = timestamp;
         }
     }
-   
+
     /// <summary>
     /// Represents each player's position on the map as well as the last move
     /// </summary>
@@ -57,6 +58,7 @@ namespace CommonLibs
         public int X, Y;
         public string Name;
         public Moves Move;
+        public int points;
 
         public PlayerPosition(string name, int x, int y, Moves move)
         {
@@ -64,6 +66,7 @@ namespace CommonLibs
             X = x;
             Y = y;
             Move = move;
+            points = 0;
         }
     }
 
@@ -88,11 +91,76 @@ namespace CommonLibs
         }
     }
 
+    [Serializable]
+    public struct ServerInfo
+    {
+        public string name;
+        public string url;
+
+        public ServerInfo(string name, string url)
+        {
+            this.name = name;
+            this.url = url;
+        }
+    }
+
+    [Serializable]
+    public struct NewServerMsg
+    {
+        public string leaderName;
+        public string leaderURL;
+        public IList<ServerInfo> peers;
+
+        public NewServerMsg(string leaderName, string leaderUrl, IList<ServerInfo> peers)
+        {
+            this.leaderName = leaderName;
+            this.leaderURL = leaderUrl;
+            this.peers = peers;
+        }
+    }
+
+
+    [Serializable]
+    public struct VoteMsg
+    {
+        public string name;
+        public long roundTimestamp;
+        public long challenge;
+
+        public VoteMsg(string name, long roundTimestamp, long challenge)
+        {
+            this.name = name;
+            this.roundTimestamp = roundTimestamp;
+            this.challenge = challenge;
+        }
+    }
+
+    [Serializable]
+    public struct ChatMsg
+    {
+        public string msg;
+        public int[] vector;
+
+        public ChatMsg(string msg, int[] vector)
+        {
+            this.msg = msg;
+            this.vector = vector;
+        }
+    }
+
+    public interface IConnectable
+    {
+        void Freeze();
+        void UnFreeze();
+        void InjectDelay(string dst_pid);
+        void GlobalState();
+    }
+
     /// <summary>
     /// Enforces the public API of the Client
     /// TODO: Update to support new features
     /// </summary>
-    public interface IClient
+    public interface IClient : IConnectable
     {
         /// <summary>
         /// Prints the msg passed as argument
@@ -105,11 +173,17 @@ namespace CommonLibs
         /// Updates the state of the game based on the calculations performed by the server.
         /// </summary>
         /// <param name="state"></param>
-        void UpdateState(GameStateMsg state);
+        void UpdateState(GameStateMsg state, string serverName);
+
+        void newServer(string url);
+
+        void newClient(string name, string url);
+
+        void sendMessage(string name, ChatMsg msg);
     }
 
     //Enforces the public API of the Server
-    public interface IServer
+    public interface IServer : IConnectable
     {
         /// <summary>
         /// Instanciates a remote client object and adds it to the list of clients
@@ -131,5 +205,25 @@ namespace CommonLibs
         /// </summary>
         /// <returns> An instance of ClientInfo with client information </returns>
         IList<ClientInfo> ConnectedClients();
+
+        void replicateState(GameStateMsg msg);
+        void connectReplica(string replicaURL, string name);
+        void addPlayer(string url, string name);
+        void sendVote(VoteMsg vote);
+        void addPeer(string url, string name);
+        string getName();
+        void demote(NewServerMsg msg);
+    }
+
+    public interface IPCS
+    {
+        void StartClient(string PID, string CLIENT_URL, string SERVER_URL, int MSEC_PER_ROUND, int NUM_PLAYERS);
+
+        void StartClient(string PID, string CLIENT_URL, string SERVER_URL, int MSEC_PER_ROUND, int NUM_PLAYERS,
+            string filename);
+
+        void StartServer(string PID, string SERVER_URL, int MSEC_PER_ROUND, int NUM_PLAYERS);
+
+        void StartServer(string PID, string SERVER_URL, int MSEC_PER_ROUND, int NUM_PLAYERS, string LEADER_URL);
     }
 }

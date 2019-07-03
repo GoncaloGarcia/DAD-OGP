@@ -4,10 +4,10 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{6EA55B1C-D6A8-481F-8FCA-7E2623D5F5E2}</ProjectGuid>
+    <ProjectGuid>{42651C95-C147-4F77-B6FB-B21C7FDC11D3}</ProjectGuid>
     <OutputType>Exe</OutputType>
-    <RootNamespace>pacman</RootNamespace>
-    <AssemblyName>pacman</AssemblyName>
+    <RootNamespace>ProcessCreationServer</RootNamespace>
+    <AssemblyName>ProcessCreationServer</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -31,9 +31,6 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Custom|AnyCPU'">
-    <OutputPath>bin\Custom\</OutputPath>
-  </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -46,7 +43,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Program.cs" />
+    <Compile Include="ProcessCreationServer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -56,6 +53,14 @@
     <ProjectReference Include="..\CommonLibs\CommonLibs.csproj">
       <Project>{194d129f-da52-411a-9884-233a0394de40}</Project>
       <Name>CommonLibs</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\pacman\pacman.csproj">
+      <Project>{ece5a838-e181-493a-b9a2-6add01de37f6}</Project>
+      <Name>pacman</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\PacServer\PacServer.csproj">
+      <Project>{016d19b4-29cb-4eb4-9e10-38fee9cd9435}</Project>
+      <Name>PacServer</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

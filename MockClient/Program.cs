@@ -8,7 +8,7 @@ using System.Runtime.Remoting.Channels.Tcp;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
-using CommonLibs;
+
 
 namespace pacman
 {
@@ -69,6 +69,21 @@ namespace pacman
         public void UpdateState(GameStateMsg state)
         {
            Console.WriteLine(state.roundTimestamp);
+        }
+
+        public void Freeze()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void UnFreeze()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void InjectDelay(string dst_pid)
+        {
+            throw new NotImplementedException();
         }
     }
 

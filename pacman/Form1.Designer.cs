@@ -1,4 +1,7 @@
-﻿namespace pacman {
+﻿using System;
+using System.Collections.Generic;
+
+namespace pacman {
     partial class Form1 {
         /// <summary>
         /// Required designer variable.
@@ -25,10 +28,12 @@
         private void InitializeComponent() {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
+
+            pacmen = new Dictionary<string, Pacman>();
+
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
-            this.pacman = new System.Windows.Forms.PictureBox();
             this.pinkGhost = new System.Windows.Forms.PictureBox();
             this.yellowGhost = new System.Windows.Forms.PictureBox();
             this.redGhost = new System.Windows.Forms.PictureBox();
@@ -98,7 +103,7 @@
             this.pictureBox64 = new System.Windows.Forms.PictureBox();
             this.tbMsg = new System.Windows.Forms.TextBox();
             this.tbChat = new System.Windows.Forms.TextBox();
-            ((System.ComponentModel.ISupportInitialize)(this.pacman)).BeginInit();
+            
             ((System.ComponentModel.ISupportInitialize)(this.pinkGhost)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.yellowGhost)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.redGhost)).BeginInit();
@@ -192,19 +197,8 @@
             // 
             this.timer1.Enabled = true;
             this.timer1.Interval = 20;
-            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
-            // 
-            // pacman
-            // 
-            this.pacman.BackColor = System.Drawing.Color.Transparent;
-            this.pacman.Image = global::pacman.Properties.Resources.Left;
-            this.pacman.Location = new System.Drawing.Point(8, 40);
-            this.pacman.Margin = new System.Windows.Forms.Padding(0);
-            this.pacman.Name = "pacman";
-            this.pacman.Size = new System.Drawing.Size(25, 25);
-            this.pacman.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pacman.TabIndex = 4;
-            this.pacman.TabStop = false;
+            this.timer1.Tick += new System.EventHandler(this.refreshGame);
+           
             // 
             // pinkGhost
             // 
@@ -1029,7 +1023,7 @@
             this.Controls.Add(this.pictureBox5);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.pacman);
+            
             this.Controls.Add(this.pinkGhost);
             this.Controls.Add(this.yellowGhost);
             this.Controls.Add(this.redGhost);
@@ -1039,9 +1033,9 @@
             this.Controls.Add(this.pictureBox1);
             this.Name = "Form1";
             this.Text = "DADman";
+            this.Shown += new System.EventHandler(this.Form1_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.keyisdown);
             this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.keyisup);
-            ((System.ComponentModel.ISupportInitialize)(this.pacman)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pinkGhost)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.yellowGhost)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.redGhost)).EndInit();
@@ -1189,6 +1183,32 @@
         private System.Windows.Forms.PictureBox pictureBox64;
         private System.Windows.Forms.TextBox tbMsg;
         private System.Windows.Forms.TextBox tbChat;
+        private IDictionary<String, Pacman> pacmen;
+    }
+
+
+    public class Pacman
+    {
+        public System.Windows.Forms.PictureBox pacman;
+
+        public Pacman(int y)
+        {
+            // 
+            // pacman
+            // 
+
+            this.pacman = new System.Windows.Forms.PictureBox();
+            this.pacman.BackColor = System.Drawing.Color.Transparent;
+            this.pacman.Image = global::pacman.Properties.Resources.Left;
+            this.pacman.Margin = new System.Windows.Forms.Padding(0);
+            this.pacman.Location = new System.Drawing.Point(8, y);
+            this.pacman.Name = "pacman";
+            this.pacman.Size = new System.Drawing.Size(25, 25);
+            this.pacman.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pacman.TabIndex = 4;
+            this.pacman.TabStop = false;
+
+        }
     }
 }
 
